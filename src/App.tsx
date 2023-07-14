@@ -1,11 +1,11 @@
+import MainLayout from "./layouts/MainLayout";
 
 function App() {
- 
   return (
     <>
-      <h1>Hello bangladesh</h1>
+      <MainLayout />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
