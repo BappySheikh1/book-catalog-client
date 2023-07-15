@@ -1,0 +1,162 @@
+[
+  {
+    "id": 1,
+    "title": "The Great Gatsby",
+    "author": "F. Scott Fitzgerald",
+    "genre": "Classic",
+    "publicationDate": "1925-04-10",
+    "reviews": []
+  },
+  {
+    "id": 2,
+    "title": "To Kill a Mockingbird",
+    "author": "Harper Lee",
+    "genre": "Classic",
+    "publicationDate": "1960-07-11",
+    "reviews": []
+  },
+  {
+    "id": 3,
+    "title": "1984",
+    "author": "George Orwell",
+    "genre": "Dystopian",
+    "publicationDate": "1949-06-08",
+    "reviews": []
+  },
+  {
+    "id": 4,
+    "title": "Pride and Prejudice",
+    "author": "Jane Austen",
+    "genre": "Romance",
+    "publicationDate": "1813-01-28",
+    "reviews": []
+  },
+  {
+    "id": 5,
+    "title": "The Catcher in the Rye",
+    "author": "J.D. Salinger",
+    "genre": "Classic",
+    "publicationDate": "1951-07-16",
+    "reviews": []
+  },
+  {
+    "id": 6,
+    "title": "Moby Dick",
+    "author": "Herman Melville",
+    "genre": "Adventure",
+    "publicationDate": "1851-10-18",
+    "reviews": []
+  },
+  {
+    "id": 7,
+    "title": "Harry Potter and the Sorcerer's Stone",
+    "author": "J.K. Rowling",
+    "genre": "Fantasy",
+    "publicationDate": "1997-06-26",
+    "reviews": []
+  },
+  {
+    "id": 8,
+    "title": "The Hobbit",
+    "author": "J.R.R. Tolkien",
+    "genre": "Fantasy",
+    "publicationDate": "1937-09-21",
+    "reviews": []
+  },
+  {
+    "id": 9,
+    "title": "The Lord of the Rings",
+    "author": "J.R.R. Tolkien",
+    "genre": "Fantasy",
+    "publicationDate": "1954-07-29",
+    "reviews": []
+  },
+  {
+    "id": 10,
+    "title": "Jane Eyre",
+    "author": "Charlotte Bronte",
+    "genre": "Romance",
+    "publicationDate": "1847-10-16",
+    "reviews": []
+  },
+  {
+    "id": 11,
+    "title": "The Alchemist",
+    "author": "Paulo Coelho",
+    "genre": "Fiction",
+    "publicationDate": "1988-01-01",
+    "reviews": []
+  },
+  {
+    "id": 12,
+    "title": "Brave New World",
+    "author": "Aldous Huxley",
+    "genre": "Dystopian",
+    "publicationDate": "1932-05-02",
+    "reviews": []
+  },
+  {
+    "id": 13,
+    "title": "The Odyssey",
+    "author": "Homer",
+    "genre": "Classic",
+    "publicationDate": "8th century BCE",
+    "reviews": []
+  },
+  {
+    "id": 14,
+    "title": "The Great Expectations",
+    "author": "Charles Dickens",
+    "genre": "Classic",
+    "publicationDate": "1861-08-01",
+    "reviews": []
+  },
+  {
+    "id": 15,
+    "title": "The Picture of Dorian Gray",
+    "author": "Oscar Wilde",
+    "genre": "Gothic",
+    "publicationDate": "1890-07-01",
+    "reviews": []
+  },
+  {
+    "id": 16,
+    "title": "Lord of the Flies",
+    "author": "William Golding",
+    "genre": "Adventure",
+    "publicationDate": "1954-09-17",
+    "reviews": []
+  },
+  {
+    "id": 17,
+    "title": "A Song of Ice and Fire",
+    "author": "George R.R. Martin",
+    "genre": "Fantasy",
+    "publicationDate": "1996-08-01",
+    "reviews": []
+  },
+  {
+    "id": 18,
+    "title": "The Shining",
+    "author": "Stephen King",
+    "genre": "Horror",
+    "publicationDate": "1977-01-28",
+    "reviews": []
+  },
+  {
+    "id": 19,
+    "title": "Gone with the Wind",
+    "author": "Margaret Mitchell",
+    "genre": "Historical Fiction",
+    "publicationDate": "1936-06-30",
+    "reviews": []
+  },
+  {
+    "id": 20,
+    "title": "The Hunger Games",
+    "author": "Suzanne Collins",
+    "genre": "Dystopian",
+    "publicationDate": "2008-09-14",
+    "reviews": []
+  }
+]

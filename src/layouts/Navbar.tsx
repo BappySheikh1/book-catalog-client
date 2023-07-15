@@ -32,7 +32,7 @@ export default function Navbar() {
             {!user?.email ? (
               <>
                 <li>
-                  <Link to="/login">Log in</Link>
+                  <Link to="/login">Log In</Link>
                 </li>
                 <li>
                   <Link to="/signup">Sign Up</Link>
@@ -43,6 +43,9 @@ export default function Navbar() {
                 <button onClick={handleLogOut}>Log Out</button>
               </li>
             )}
+           {user?.email && <li>
+              <a>{user.email}</a>
+            </li>}
           </ul>
         </div>
       </div>
