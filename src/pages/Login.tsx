@@ -1,7 +1,10 @@
+/* eslint-disable @typescript-eslint/no-floating-promises */
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { FaFacebookF, FaGoogle, FaGithub } from "react-icons/fa";
+import { useAppDispatch } from "../redux/hook";
+import { loginUser } from "../redux/features/users/userSlice";
 
 type Inputs = {
   email: string;
@@ -15,8 +18,11 @@ export default function Login() {
     formState: { errors },
   } = useForm<Inputs>();
 
+  const dispatch = useAppDispatch()
+
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log(data.email, data.password);
+    // console.log(data.email, data.password);
+    dispatch(loginUser({email: data.email,password: data.password}))
   };
 
   return (

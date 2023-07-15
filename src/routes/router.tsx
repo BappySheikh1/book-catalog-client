@@ -8,6 +8,7 @@ import Books from "../pages/Books";
 import Home from "../pages/Home";
 import App from "../App";
 import MainLayout from "../layouts/MainLayout";
+import AddBook from "../pages/AddBook";
 
 const routes = createBrowserRouter([
   {
@@ -16,7 +17,7 @@ const routes = createBrowserRouter([
     errorElement: <NotFound />,
     children: [
       {
-        path: '/',
+        path: "/",
         element: <Home />,
       },
       {
@@ -24,19 +25,22 @@ const routes = createBrowserRouter([
         element: <Books />,
       },
       {
+        path: "/addbook",
+        element: <AddBook />,
+      },
+      {
         path: "/book-details/:id",
-        element:<BookDetails />,
-      }
-     
+        element: <BookDetails />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/signup",
+        element: <SignUp />,
+      },
     ],
-  },
-  {
-    path: "/login",
-    element: <Login />,
-  },
-  {
-    path: "/signup",
-    element: <SignUp />,
   },
 ]);
 

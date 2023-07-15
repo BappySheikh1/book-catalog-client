@@ -1,12 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyDbyfxUa-L3Ba-RoTR2NkG7I0WtzYz5L1U",
   authDomain: "book-catalog-4113a.firebaseapp.com",

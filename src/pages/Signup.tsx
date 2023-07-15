@@ -1,7 +1,10 @@
+/* eslint-disable @typescript-eslint/no-floating-promises */
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { FaFacebookF, FaGoogle, FaGithub } from "react-icons/fa";
+import { useAppDispatch } from "../redux/hook";
+import { createUser } from "../redux/features/users/userSlice";
 
 type Inputs = {
   name: string;
@@ -16,8 +19,12 @@ export default function SignUp() {
     formState: { errors },
   } = useForm<Inputs>();
 
+  const dispatch = useAppDispatch()
+
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     console.log(data.email, data.password, data.name);
+    
+    dispatch(createUser({ email: data.email, password: data.password }));
   };
 
   return (
