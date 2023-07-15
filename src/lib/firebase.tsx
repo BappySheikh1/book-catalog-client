@@ -1,17 +1,22 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { initializeApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
+// Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_apiKey,
-  authDomain: import.meta.env.VITE_authDomain,
-  projectId: import.meta.env.VITE_projectId,
-  storageBucket: import.meta.env.VITE_storageBucket,
-  messagingSenderId: import.meta.env.VITE_messagingSenderId,
-  appId: import.meta.env.VITE_appId,
+  apiKey: "AIzaSyDbyfxUa-L3Ba-RoTR2NkG7I0WtzYz5L1U",
+  authDomain: "book-catalog-4113a.firebaseapp.com",
+  projectId: "book-catalog-4113a",
+  storageBucket: "book-catalog-4113a.appspot.com",
+  messagingSenderId: "10335595155",
+  appId: "1:10335595155:web:85ab81a6451f8027133b66"
 };
 
-const app = initializeApp(firebaseConfig);
+// Initialize Firebase
+const app  =  initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
