@@ -22,12 +22,14 @@ export default function SignUp() {
 
   return (
     <div className=" flex justify-center bg-black h-[600px] mt-6">
-      <div className="w-[60%]  bg-[url(https://img.freepik.com/free-vector/gradient-network-connection-background_23-2148865392.jpg?w=740&t=st=1689398226~exp=1689398826~hmac=bd21ad6d021164f556dc5f9b5d72083e77c2c2a627846a03febbb20c4f82ae32)]  flex items-center justify-center">
-        <div>
+      <div className="w-[60%] relative  bg-[url(https://img.freepik.com/free-photo/free-trial-storage-member-concept_53876-119992.jpg?w=740&t=st=1689403163~exp=1689403763~hmac=b9dd8bf572b4b0c620feeefaa0e0962665262298d585d064021fc5b7305e24a1)] bg-no-repeat bg-cover bg-center">
+        <div className="absolute inset-0 bg-black opacity-50">
+      
           <h1 className="text-5xl font-semibold text-white">Welcome back!</h1>
           <p className="text-xl text-white">
-            Get access to your Orders, Wishlist and Recommendations.
+          Sign up with your email and personal details to get started!
           </p>
+         
         </div>
       </div>
 
@@ -63,9 +65,9 @@ export default function SignUp() {
             {errors.password && (
               <span className="text-red-600">This field is required</span>
             )}
-
+            <br />
             <input
-              className="border mt-5 border-[#464660] w-[360px] h-[49px] rounded-[10px] p-[20px] gap-[10px]  font-bold"
+              className="border  border-[#464660] w-[360px] h-[49px] rounded-[10px] p-[20px] gap-[10px]  font-bold"
               type="password"
               placeholder="Enter your password"
               {...register("password", {
