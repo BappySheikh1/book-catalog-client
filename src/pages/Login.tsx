@@ -1,10 +1,8 @@
-/* eslint-disable @typescript-eslint/no-floating-promises */
-/* eslint-disable @typescript-eslint/no-misused-promises */
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { FaFacebookF, FaGoogle, FaGithub } from "react-icons/fa";
 import { useAppDispatch } from "../redux/hook";
-import { loginUser } from "../redux/features/users/userSlice";
+import { loginUser } from "../redux/features/user/userSlice";
 
 type Inputs = {
   email: string;
@@ -17,12 +15,11 @@ export default function Login() {
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
-
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     // console.log(data.email, data.password);
-    dispatch(loginUser({email: data.email,password: data.password}))
+    dispatch(loginUser({ email: data.email, password: data.password }));
   };
 
   return (
@@ -47,7 +44,6 @@ export default function Login() {
           </div>
           {/* React hookForm  start*/}
           <form onSubmit={handleSubmit(onSubmit)}>
-
             <input
               className="border  border-[#464660] w-[360px] h-[49px] rounded-[10px] p-[20px] gap-[10px]  font-bold"
               type="email"
@@ -96,13 +92,13 @@ export default function Login() {
 
           <div className="flex mt-3 justify-center space-x-4">
             <button>
-              <FaGoogle className ="text-3xl text-[#4285F4]"/>
+              <FaGoogle className="text-3xl text-[#4285F4]" />
             </button>
             <button>
-              <FaFacebookF className ="text-3xl text-[#0165E1]"/>
+              <FaFacebookF className="text-3xl text-[#0165E1]" />
             </button>
             <button>
-              <FaGithub className ="text-3xl text-[#333]"/>
+              <FaGithub className="text-3xl text-[#333]" />
             </button>
           </div>
 

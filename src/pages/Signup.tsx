@@ -1,10 +1,8 @@
-/* eslint-disable @typescript-eslint/no-floating-promises */
-/* eslint-disable @typescript-eslint/no-misused-promises */
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { FaFacebookF, FaGoogle, FaGithub } from "react-icons/fa";
 import { useAppDispatch } from "../redux/hook";
-import { createUser } from "../redux/features/users/userSlice";
+import { createUser } from "../redux/features/user/userSlice";
 
 type Inputs = {
   name: string;
@@ -19,11 +17,10 @@ export default function SignUp() {
     formState: { errors },
   } = useForm<Inputs>();
 
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     console.log(data.email, data.password, data.name);
-    
     dispatch(createUser({ email: data.email, password: data.password }));
   };
 
@@ -31,12 +28,10 @@ export default function SignUp() {
     <div className=" flex justify-center bg-black h-[600px] mt-6">
       <div className="w-[60%] relative  bg-[url(https://img.freepik.com/free-photo/free-trial-storage-member-concept_53876-119992.jpg?w=740&t=st=1689403163~exp=1689403763~hmac=b9dd8bf572b4b0c620feeefaa0e0962665262298d585d064021fc5b7305e24a1)] bg-no-repeat bg-cover bg-center">
         <div className="absolute inset-0 bg-black opacity-50">
-      
           <h1 className="text-5xl font-semibold text-white">Welcome back!</h1>
           <p className="text-xl text-white">
-          Sign up with your email and personal details to get started!
+            Sign up with your email and personal details to get started!
           </p>
-         
         </div>
       </div>
 
@@ -108,13 +103,13 @@ export default function SignUp() {
 
           <div className="flex mt-3 justify-center space-x-4">
             <button>
-              <FaGoogle className ="text-3xl text-[#4285F4]"/>
+              <FaGoogle className="text-3xl text-[#4285F4]" />
             </button>
             <button>
-              <FaFacebookF className ="text-3xl text-[#0165E1]"/>
+              <FaFacebookF className="text-3xl text-[#0165E1]" />
             </button>
             <button>
-              <FaGithub className ="text-3xl text-[#333]"/>
+              <FaGithub className="text-3xl text-[#333]" />
             </button>
           </div>
 
