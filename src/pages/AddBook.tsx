@@ -1,6 +1,7 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useAppSelector } from "../redux/hook";
 import { useCreateBookMutation } from "../redux/features/book/bookApi";
+import { useNavigate } from "react-router-dom";
 
 
 type Inputs = {
@@ -11,9 +12,9 @@ type Inputs = {
 };
 
 export default function AddBook() {
-  
+  const navigate = useNavigate()
   const [createBook]=useCreateBookMutation()
-
+  
   const email =useAppSelector((state)=>state.user.user.email)
 
   const {
@@ -35,6 +36,7 @@ export default function AddBook() {
     }
     console.log(bookData)
     createBook(bookData)
+    navigate("/")
   };
 
   return (
@@ -44,8 +46,8 @@ export default function AddBook() {
      <>
         <div className="text-center mt-5">
           <div className="text-center">
-            <h2 className="text-4xl font-bold text-center">
-              Welcome <span className="text-[#08A593]">Back!</span>{" "}
+            <h2 className="text-4xl font-bold text-center mb-5">
+              Add A New <span className="text-[#08A593]">Book!</span>
             </h2>
           </div>
           {/* React hookForm  start*/}

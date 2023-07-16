@@ -1,5 +1,5 @@
 import { useForm, SubmitHandler } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaFacebookF, FaGoogle, FaGithub } from "react-icons/fa";
 import { useAppDispatch } from "../redux/hook";
 import { loginUser } from "../redux/features/user/userSlice";
@@ -10,6 +10,7 @@ type Inputs = {
 };
 
 export default function Login() {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -20,6 +21,7 @@ export default function Login() {
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     // console.log(data.email, data.password);
     dispatch(loginUser({ email: data.email, password: data.password }));
+    navigate("/")
   };
 
   return (

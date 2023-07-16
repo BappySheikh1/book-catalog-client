@@ -1,48 +1,42 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useAppSelector } from "../redux/hook";
+
 import {
-  useCreateBookMutation,
   useGetSingleBooksQuery,
   useUpdateBookMutation,
 } from "../redux/features/book/bookApi";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 type Inputs = {
   title: string;
   author: string;
   genre: string;
   publicationDate: string;
-  email: string;
 };
 
 export default function UpdateBook() {
+  const navigate = useNavigate();
   const { id } = useParams();
   const { register, handleSubmit } = useForm<Inputs>();
-  const [updatedBook] = useUpdateBookMutation();
   const { data, isLoading } = useGetSingleBooksQuery(id);
 
-
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log(data)
-    const option = {
-      ...data,
-      reviews: [],
-    };
-
-    const bookData = {
-      title: option.title,
-      author: option.author,
-      genre: option.genre,
-      publicationDate: option.publicationDate,
-      reviews: option.reviews,
-    };
-    console.log(bookData)
-    updatedBook(bookData);
-  };
-
+  const [updatedBook] = useUpdateBookMutation();
   if (isLoading) {
-    return <p>Loading...........</p>;
+    return (
+      <div className="w-[100%] mx-auto">
+        <div className="w-16 h-16 text-center border-4 border-dashed rounded-full animate-spin text-red-700"></div>
+      </div>
+    );
   }
+  const { title, author, genre, publicationDate } = data.data;
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    const option = {
+      id,
+      ...data,
+    };
+    console.log(option)
+    updatedBook(option);
+    navigate("/");
+  };
 
   return (
     <div className="mx-auto w-[40%]">
@@ -52,10 +46,7 @@ export default function UpdateBook() {
           <div className="text-center">
             <h2 className="text-4xl font-bold text-center my-5">
               Update This Product
-              <span className="text-[#08A593] ">
-                {" "}
-                {data?.data?.title}!
-              </span>{" "}
+              <span className="text-[#08A593] "> {title}!</span>{" "}
             </h2>
           </div>
           {/* React hookForm  start*/}
@@ -63,7 +54,7 @@ export default function UpdateBook() {
             <input
               className="border  border-[#464660] w-[360px] h-[49px] rounded-[10px] p-[20px] gap-[10px]  font-bold"
               type="title"
-              value={data?.data?.title}
+              defaultValue={title}
               placeholder="Book title"
               {...register("title", {
                 required: true,
@@ -72,7 +63,7 @@ export default function UpdateBook() {
             <input
               className="border mt-3 border-[#464660] w-[360px] h-[49px] rounded-[10px] p-[20px] gap-[10px]  font-bold"
               type="author"
-              // value={data?.data?.author}
+              defaultValue={author}
               placeholder="Author name"
               {...register("author", {
                 required: true,
@@ -81,7 +72,7 @@ export default function UpdateBook() {
             <input
               className="border my-3 border-[#464660] w-[360px] h-[49px] rounded-[10px] p-[20px] gap-[10px]  font-bold"
               type="genre"
-              // value={data?.data?.genre}
+              defaultValue={genre}
               placeholder="Genre"
               {...register("genre", {
                 required: true,
@@ -90,20 +81,9 @@ export default function UpdateBook() {
             <input
               className="border my-3 border-[#464660] w-[360px] h-[49px] rounded-[10px] p-[20px] gap-[10px]  font-bold"
               type="publicationDate"
-        
-              // defaultValue={data?.data?.publicationDate}
+              defaultValue={publicationDate}
               placeholder="Publication date"
               {...register("publicationDate", {
-                required: true,
-              })}
-            />
-            <input
-              className="border border-[#464660] w-[360px] h-[49px] rounded-[10px] p-[20px] gap-[10px]  font-bold"
-              type="email"
-        
-              // defaultValue={data?.data?.email}
-              placeholder="user email"
-              {...register("email", {
                 required: true,
               })}
             />

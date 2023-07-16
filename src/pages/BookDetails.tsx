@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import BookReview from "../components/BookReview";
 import {
   useDeleteBooksMutation,
@@ -7,18 +7,28 @@ import {
 import { useAppSelector } from "../redux/hook";
 
 export default function BookDetails() {
+  const navigate = useNavigate()
   const { id } = useParams();
   const { user } = useAppSelector((state) => state.user);
-  const { data } = useGetSingleBooksQuery(id);
-  const [deleteBook] = useDeleteBooksMutation();
+  const { data ,isLoading} = useGetSingleBooksQuery(id);
 
-  const handleDelete = (_id: string | undefined) => {
-    console.log("Delete This Book", _id);
-    if(_id){
-      alert("tumi ki sotti delete korte chau")
+  const [deleteBook] = useDeleteBooksMutation();
+  if (isLoading) {
+    return (
+      <div className="w-[100%] mx-auto">
+        <div className="w-16 h-16 text-center border-4 border-dashed rounded-full animate-spin text-red-700"></div>
+      </div>
+    );
+  }
+
+  const handleDelete = async () => {
+    try {
+        await deleteBook(id);
+        navigate('/');
+    } catch (error) {
+        console.error('Error deleting book:', error);
     }
-    deleteBook({ _id });
-  };
+};
 
   return (
     <>
@@ -42,7 +52,7 @@ export default function BookDetails() {
               <li key={reviews}>{reviews}</li>
             ))}
           </ul>
-          {user?.email === data?.data?.email ? (
+          {user?.email && user?.email === data?.data?.email ? (
             <>
               <Link to={`/update-book/${id}`}>
                 <button className="btn btn-primary">Edit Book</button>
@@ -50,7 +60,7 @@ export default function BookDetails() {
 
               <button
                 className="btn bg-red-800 hover:bg-red-700 text-white ml-10"
-                onClick={() => handleDelete(id)}
+                onClick={() => handleDelete()}
               >
                 Delete Book
               </button>
@@ -64,7 +74,7 @@ export default function BookDetails() {
               <button
                 disabled
                 className="btn bg-red-800 hover:bg-red-700 text-white ml-10"
-                onClick={() => handleDelete(id)}
+                onClick={() => handleDelete()}
               >
                 Delete Book
               </button>

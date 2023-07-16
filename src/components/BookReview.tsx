@@ -15,7 +15,7 @@ export default function BookReview({ id }: IProps) {
     refetchOnMountOrArgChange: true,
     pollingInterval: 30000,
   });
-  console.log(data);
+  // console.log(data);
   const [postComment] = usePostCommentMutation();
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
