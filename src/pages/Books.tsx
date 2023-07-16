@@ -1,16 +1,20 @@
-import { useEffect, useState } from "react";
+import { useGetBooksQuery } from "../redux/features/book/bookApi";
 import { IBook } from "../types/globalTypes";
 import { Link } from "react-router-dom";
 
 export default function Books() {
-  const [bookState, setBookState] = useState<IBook[]>([]);
+  // const [bookState, setBookState] = useState<IBook[]>([]);
 
-  useEffect(() => {
-    fetch("books.json")
-      .then((res) => res.json())
-      .then((data) => setBookState(data));
-  }, []);
-
+  // useEffect(() => {
+  //   fetch("books.json")
+  //     .then((res) => res.json())
+  //     .then((data) => setBookState(data));
+  // }, []);
+  
+  const {data,isLoading} =useGetBooksQuery(undefined)
+  if (isLoading) {
+    return <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin dark:border-violet-400"></div>;
+  }
   const handleSearch = (e: { preventDefault: () => void }) => {
     e.preventDefault();
   };
@@ -52,7 +56,7 @@ export default function Books() {
       </header>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 px-2">
-        {bookState?.map((book) => (
+        {data?.data?.map((book:IBook) => (
           <div className="card border shadow ">
             <figure>
               <img

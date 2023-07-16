@@ -36,6 +36,10 @@ const routes = createBrowserRouter([
         element: <BookDetails />,
       },
       {
+        path: "/update-book/:id",
+        element: <BookDetails />,
+      },
+      {
         path: "/login",
         element: <Login />,
       },

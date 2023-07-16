@@ -1,27 +1,45 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import BookReview from "../components/BookReview";
+import { useGetSingleBooksQuery } from "../redux/features/book/bookApi";
 
 export default function BookDetails() {
   const { id } = useParams();
+
+  const { data } = useGetSingleBooksQuery(id);
+
+
+  const handleDelete =(_id:string | undefined)=>{
+    console.log("Delete This Book", _id)
+  }
 
   return (
     <>
       <div className="flex max-w-7xl mx-auto items-center border-b border-gray-300">
         <div className="w-[50%]">
-          <img src={book?.image} alt="" />
+          <img
+            src="https://img.freepik.com/free-psd/soft-cover-book-mockup-scene_358694-4823.jpg?w=740&t=st=1689441169~exp=1689441769~hmac=51dfcfacda0a0e2a86d7b2ad2091c3a3c301188c627116481ec15a9118c71dec"
+            alt=""
+          />
         </div>
-        <div className="w-[50%] space-y-3">
-          <h1 className="text-3xl font-semibold">{book?.title}</h1>
-          <p className="text-xl">Rating: {book?.author}</p>
-          <p className="text-xl">Rating: {book?.genre}</p>
-          <p className="text-xl">Rating: {book?.publicationDate}</p>
+        <div className="w-[50%] space-y-3 mx-3">
+          <h1 className="text-3xl font-semibold">Title :{data?.data?.title}</h1>
+          <p className="text-xl">Author: {data?.data?.author}</p>
+          <p className="text-xl">Genre: {data?.data?.genre}</p>
+          <p className="text-xl">
+            Publication Date: {data?.data?.publicationDate}
+          </p>
           <ul className="space-y-1 text-lg">
-            {book?.review?.map((feature: string) => (
-              <li key={feature}>{feature}</li>
+            {data?.data?.review?.map((reviews: string) => (
+              <li key={reviews}>{reviews}</li>
             ))}
           </ul>
-          <button>Edit Book</button>
-          <button>Update Book</button>
+          <div className="">
+          <Link to={`/update-book/${id}`}>
+            <button className="btn btn-primary">Edit Book</button>
+          </Link>
+
+            <button className="btn bg-red-800 text-white ml-10" onClick={()=>handleDelete(id)}>Delete Book</button>
+          </div>
         </div>
       </div>
       <BookReview id={id!} />
