@@ -54,7 +54,7 @@ export default function Books() {
           <div key={book._id} className="card border shadow ">
             <figure>
               <img
-                className="h-[150px] w-full"
+                className="h-[150px] w-full "
                 src="https://img.freepik.com/free-psd/soft-cover-book-mockup-scene_358694-4823.jpg?w=740&t=st=1689441169~exp=1689441769~hmac=51dfcfacda0a0e2a86d7b2ad2091c3a3c301188c627116481ec15a9118c71dec"
                 alt="book"
               />
