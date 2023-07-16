@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { IBook } from "../types/globalTypes";
 import { Link } from "react-router-dom";
+import Header from "./Header";
 
 export default function Home() {
   const [bookState, setBookState] = useState<IBook[]>([]);
@@ -13,6 +14,7 @@ export default function Home() {
 
   return (
     <>
+    <Header />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 px-2">
         {bookState?.map((book) => (
           <div className="card border shadow ">

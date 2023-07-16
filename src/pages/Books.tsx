@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { IBook } from "../types/globalTypes";
+import { Link } from "react-router-dom";
 
 export default function Books() {
   const [bookState, setBookState] = useState<IBook[]>([]);
@@ -10,10 +11,8 @@ export default function Books() {
       .then((data) => setBookState(data));
   }, []);
 
-  const handleSearch = (e: { preventDefault: () => void; }) => {
+  const handleSearch = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    
-    
   };
   return (
     <>
@@ -62,17 +61,19 @@ export default function Books() {
                 alt="book"
               />
             </figure>
-            <div className="card-body">
-              <h2 className="card-title">Title : {book.title}</h2>
-              <p>Author : {book.author}</p>
-              <p>PublicationDate : {book.publicationDate}</p>
+            <Link to={`/book-details/${book._id}`}>
+              <div className="card-body">
+                <h2 className="card-title">Title : {book.title}</h2>
+                <p>Author : {book.author}</p>
+                <p>PublicationDate : {book.publicationDate}</p>
 
-              <div className="card-actions justify-end">
-                <div className="badge badge-outline">
-                  {book.publicationDate}
+                <div className="card-actions justify-end">
+                  <div className="badge badge-outline">
+                    {book.publicationDate}
+                  </div>
                 </div>
               </div>
-            </div>
+            </Link>
           </div>
         ))}
       </div>

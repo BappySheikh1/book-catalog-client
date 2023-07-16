@@ -6,7 +6,6 @@ import Login from "../pages/Login";
 import BookDetails from "../pages/BookDetails";
 import Books from "../pages/Books";
 import Home from "../pages/Home";
-import App from "../App";
 import MainLayout from "../layouts/MainLayout";
 import AddBook from "../pages/AddBook";
 
@@ -26,7 +25,11 @@ const routes = createBrowserRouter([
       },
       {
         path: "/addbook",
-        element: <AddBook />,
+        element: (
+          <PrivateRoute>
+            <AddBook />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/book-details/:id",

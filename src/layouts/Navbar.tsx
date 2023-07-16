@@ -26,9 +26,7 @@ export default function Navbar() {
             <li>
               <Link to="/books">All Books</Link>
             </li>
-            <li>
-              <Link to="/addbook">Add Book</Link>
-            </li>
+
             {!user?.email ? (
               <>
                 <li>
@@ -39,13 +37,20 @@ export default function Navbar() {
                 </li>
               </>
             ) : (
+              <>
+                <li>
+                  <Link to="/addbook">Add Book</Link>
+                </li>
+                <li>
+                  <button onClick={handleLogOut}>Log Out</button>
+                </li>
+              </>
+            )}
+            {user?.email && (
               <li>
-                <button onClick={handleLogOut}>Log Out</button>
+                <a>{user.email}</a>
               </li>
             )}
-           {user?.email && <li>
-              <a>{user.email}</a>
-            </li>}
           </ul>
         </div>
       </div>
