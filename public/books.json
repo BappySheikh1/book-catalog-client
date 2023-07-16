@@ -1,6 +1,6 @@
 [
   {
-    "id": 1,
+    "_id": 1,
     "title": "The Great Gatsby",
     "author": "F. Scott Fitzgerald",
     "genre": "Classic",
@@ -8,7 +8,7 @@
     "reviews": []
   },
   {
-    "id": 2,
+    "_id": 2,
     "title": "To Kill a Mockingbird",
     "author": "Harper Lee",
     "genre": "Classic",
@@ -16,15 +16,15 @@
     "reviews": []
   },
   {
-    "id": 3,
-    "title": "1984",
+    "_id": 3,
+    "title": "Mockingbird",
     "author": "George Orwell",
     "genre": "Dystopian",
     "publicationDate": "1949-06-08",
     "reviews": []
   },
   {
-    "id": 4,
+    "_id": 4,
     "title": "Pride and Prejudice",
     "author": "Jane Austen",
     "genre": "Romance",
@@ -32,7 +32,7 @@
     "reviews": []
   },
   {
-    "id": 5,
+    "_id": 5,
     "title": "The Catcher in the Rye",
     "author": "J.D. Salinger",
     "genre": "Classic",
@@ -40,7 +40,7 @@
     "reviews": []
   },
   {
-    "id": 6,
+    "_id": 6,
     "title": "Moby Dick",
     "author": "Herman Melville",
     "genre": "Adventure",
@@ -48,15 +48,15 @@
     "reviews": []
   },
   {
-    "id": 7,
-    "title": "Harry Potter and the Sorcerer's Stone",
+    "_id": 7,
+    "title": "Harry Potter",
     "author": "J.K. Rowling",
     "genre": "Fantasy",
     "publicationDate": "1997-06-26",
     "reviews": []
   },
   {
-    "id": 8,
+    "_id": 8,
     "title": "The Hobbit",
     "author": "J.R.R. Tolkien",
     "genre": "Fantasy",
@@ -64,7 +64,7 @@
     "reviews": []
   },
   {
-    "id": 9,
+    "_id": 9,
     "title": "The Lord of the Rings",
     "author": "J.R.R. Tolkien",
     "genre": "Fantasy",
@@ -72,7 +72,7 @@
     "reviews": []
   },
   {
-    "id": 10,
+    "_id": 10,
     "title": "Jane Eyre",
     "author": "Charlotte Bronte",
     "genre": "Romance",
@@ -80,7 +80,7 @@
     "reviews": []
   },
   {
-    "id": 11,
+    "_id": 11,
     "title": "The Alchemist",
     "author": "Paulo Coelho",
     "genre": "Fiction",
@@ -88,7 +88,7 @@
     "reviews": []
   },
   {
-    "id": 12,
+    "_id": 12,
     "title": "Brave New World",
     "author": "Aldous Huxley",
     "genre": "Dystopian",
@@ -96,7 +96,7 @@
     "reviews": []
   },
   {
-    "id": 13,
+    "_id": 13,
     "title": "The Odyssey",
     "author": "Homer",
     "genre": "Classic",
@@ -104,7 +104,7 @@
     "reviews": []
   },
   {
-    "id": 14,
+    "_id": 14,
     "title": "The Great Expectations",
     "author": "Charles Dickens",
     "genre": "Classic",
@@ -112,15 +112,15 @@
     "reviews": []
   },
   {
-    "id": 15,
-    "title": "The Picture of Dorian Gray",
+    "_id": 15,
+    "title": "The Picture of Dorian ",
     "author": "Oscar Wilde",
     "genre": "Gothic",
     "publicationDate": "1890-07-01",
     "reviews": []
   },
   {
-    "id": 16,
+    "_id": 16,
     "title": "Lord of the Flies",
     "author": "William Golding",
     "genre": "Adventure",
@@ -128,7 +128,7 @@
     "reviews": []
   },
   {
-    "id": 17,
+    "_id": 17,
     "title": "A Song of Ice and Fire",
     "author": "George R.R. Martin",
     "genre": "Fantasy",
@@ -136,7 +136,7 @@
     "reviews": []
   },
   {
-    "id": 18,
+    "_id": 18,
     "title": "The Shining",
     "author": "Stephen King",
     "genre": "Horror",
@@ -144,7 +144,7 @@
     "reviews": []
   },
   {
-    "id": 19,
+    "_id": 19,
     "title": "Gone with the Wind",
     "author": "Margaret Mitchell",
     "genre": "Historical Fiction",
@@ -152,7 +152,7 @@
     "reviews": []
   },
   {
-    "id": 20,
+    "_id": 20,
     "title": "The Hunger Games",
     "author": "Suzanne Collins",
     "genre": "Dystopian",
