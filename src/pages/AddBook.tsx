@@ -3,7 +3,6 @@ import { useAppSelector } from "../redux/hook";
 import { useCreateBookMutation } from "../redux/features/book/bookApi";
 import { useNavigate } from "react-router-dom";
 
-
 type Inputs = {
   title: string;
   author: string;
@@ -12,38 +11,44 @@ type Inputs = {
 };
 
 export default function AddBook() {
-  const navigate = useNavigate()
-  const [createBook]=useCreateBookMutation()
-  
-  const email =useAppSelector((state)=>state.user.user.email)
+  const navigate = useNavigate();
+  const [createBook, { isLoading }] = useCreateBookMutation();
 
-  const {
-    register,
-    handleSubmit,
-  } = useForm<Inputs>();
+  const email = useAppSelector((state) => state.user.user.email);
+
+  const { register, handleSubmit } = useForm<Inputs>();
+
+  if (isLoading) {
+    return (
+      <div className="w-[100%] mx-auto">
+        <div className="w-16 h-16 text-center border-4 border-dashed rounded-full animate-spin text-red-700"></div>
+      </div>
+    );
+  }
+
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    
-    const option ={
-      ...data , email, reviews : []
-    }
-    const bookData ={
+    const option = {
+      ...data,
+      email,
+      reviews: [],
+    };
+    const bookData = {
       email: option.email,
-      title : option.title,
-      author : option.author,
-      genre : option.genre,
-      publicationDate : option.publicationDate,
-      reviews : option.reviews,
-    }
-    console.log(bookData)
-    createBook(bookData)
-    navigate("/")
+      title: option.title,
+      author: option.author,
+      genre: option.genre,
+      publicationDate: option.publicationDate,
+      reviews: option.reviews,
+    };
+    console.log(bookData);
+    createBook(bookData);
+    navigate("/");
   };
 
   return (
     <div className="mx-auto w-[40%]">
-    
-     {/* react hook form */}
-     <>
+      {/* react hook form */}
+      <>
         <div className="text-center mt-5">
           <div className="text-center">
             <h2 className="text-4xl font-bold text-center mb-5">
@@ -84,8 +89,7 @@ export default function AddBook() {
                 required: true,
               })}
             />
-           
-           
+
             <input
               className="bg-[#0d6efd] mt-5 w-[360px] h-[53px] rounded-[10px]  gap-[10px] text-white font-bold cursor-pointer "
               type="submit"
@@ -93,11 +97,8 @@ export default function AddBook() {
             />
           </form>
           {/* React hookForm  end*/}
-        
-      
-          
         </div>
       </>
     </div>
-  )
+  );
 }

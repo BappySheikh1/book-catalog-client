@@ -21,7 +21,7 @@ export default function Home() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 px-2">
         {data?.data?.map((book: IBook) => (
-          <div className="card border shadow my-5">
+          <div key={book._id} className="card border shadow my-5">
             <figure>
               <img
                 className="h-[150px] w-full"

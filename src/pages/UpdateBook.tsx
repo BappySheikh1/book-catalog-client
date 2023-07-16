@@ -28,14 +28,17 @@ export default function UpdateBook() {
     );
   }
   const { title, author, genre, publicationDate } = data.data;
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
-    const option = {
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    const bookData = {
       id,
       ...data,
     };
-    console.log(option)
-    updatedBook(option);
-    navigate("/");
+    try {
+      await updatedBook(bookData).unwrap();
+      navigate("/");
+    } catch (error) {
+      console.error("Error updating book:", error);
+    }
   };
 
   return (
