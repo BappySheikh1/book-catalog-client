@@ -1,17 +1,18 @@
 import { signOut } from "firebase/auth";
 import { Link } from "react-router-dom";
 import { auth } from "../lib/firebase";
-import { toast } from "react-toastify";
-import { useAppSelector } from "../redux/hook";
+import { useAppDispatch, useAppSelector } from "../redux/hook";
+import { setUser } from "../redux/features/user/userSlice";
 
 export default function Navbar() {
   const { user } = useAppSelector((state) => state.user);
+  const dispatch = useAppDispatch()
 
-  const handleLogOut = () => {
-    signOut(auth).then(() => {
-      toast.success("Log Out successfully");
-    });
-  };
+  const handleLogOut =()=>{
+    signOut(auth).then(()=>{
+      dispatch(setUser(null))
+    })
+  }
 
   return (
     <>

@@ -1,5 +1,7 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useAppSelector } from "../redux/hook";
+import { useCreateBookMutation } from "../redux/features/book/bookApi";
+
 
 type Inputs = {
   title: string;
@@ -10,6 +12,8 @@ type Inputs = {
 
 export default function AddBook() {
   
+  const [createBook]=useCreateBookMutation()
+
   const email =useAppSelector((state)=>state.user.user.email)
 
   const {
@@ -18,10 +22,19 @@ export default function AddBook() {
   } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     
-    const options ={
-      ...data , email, review : []
+    const option ={
+      ...data , email, reviews : []
     }
-    console.log(options)
+    const bookData ={
+      email: option.email,
+      title : option.title,
+      author : option.author,
+      genre : option.genre,
+      publicationDate : option.publicationDate,
+      reviews : option.reviews,
+    }
+    console.log(bookData)
+    createBook(bookData)
   };
 
   return (

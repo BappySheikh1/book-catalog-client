@@ -15,33 +15,41 @@ const bookApi = api.injectEndpoints({
     // book query end
     // -----------------------------------------
     // book mutation start
-    updateBooks: builder.mutation({
+    createBook: builder.mutation({
+      query: (data) => ({
+        url: `/book/add-book`,
+        method: "POST",
+        body: data,
+      }),
+    }),
+
+    updateBook: builder.mutation({
       query: ({ id, data }) => ({
         url: `/book/${id}`,
-        method: 'PATCH',
+        method: "PATCH",
         body: data,
       }),
     }),
     deleteBooks: builder.mutation({
       query: ({ id }) => ({
         url: `/book/${id}`,
-        method: 'DELETE'
+        method: "DELETE",
       }),
     }),
-   // book mutation end
-  //  -------------------------------------------------
-  //  comment start
+    // book mutation end
+    //  -------------------------------------------------
+    //  comment start
     postComment: builder.mutation({
       query: ({ id, data }) => ({
         url: `/book/comment/${id}`,
-        method: 'POST',
+        method: "POST",
         body: data,
       }),
-     
+      invalidatesTags: ["comments"],
     }),
     getComment: builder.query({
       query: (id) => `/book/comment/${id}`,
-     
+      providesTags: ["comments"],
     }),
     // comment end
   }),
@@ -52,7 +60,8 @@ export const {
   useGetSingleBooksQuery,
   useGetLimitBooksQuery,
   useDeleteBooksMutation,
-  useUpdateBooksMutation,
+  useUpdateBookMutation,
   usePostCommentMutation,
-  useGetCommentQuery
+  useGetCommentQuery,
+  useCreateBookMutation
 } = bookApi;
