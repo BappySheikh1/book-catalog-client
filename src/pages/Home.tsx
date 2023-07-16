@@ -2,9 +2,11 @@ import { IBook } from "../types/globalTypes";
 import { Link } from "react-router-dom";
 import Header from "./Header";
 import { useGetLimitBooksQuery } from "../redux/features/book/bookApi";
+import { addToWishList } from "../redux/features/wishList/wishList.Slice";
+import { useAppDispatch } from "../redux/hook";
 
 export default function Home() {
-  
+  const dispatch = useAppDispatch();
   const { data, isLoading } = useGetLimitBooksQuery(undefined);
 
   if (isLoading) {
@@ -14,6 +16,11 @@ export default function Home() {
       </div>
     );
   }
+
+  const handleWishList = (data: IBook) => {
+    console.log(data);
+    dispatch(addToWishList(data));
+  };
 
   return (
     <>
@@ -29,20 +36,25 @@ export default function Home() {
                 alt="book"
               />
             </figure>
-            <Link to={`/book-details/${book._id}`}>
-              <div className="card-body">
-                <h2 className="card-title">Title : {book.title}</h2>
-                <p>Author : {book.author}</p>
-                <p>Genre : {book.genre}</p>
-                <p>PublicationDate : {book.publicationDate}</p>
 
-                <div className="card-actions justify-end">
-                  <div className="badge badge-outline">
-                    {book.publicationDate}
-                  </div>
+            <div className="card-body">
+              <h2 className="card-title">Title : {book.title}</h2>
+              <p>Author : {book.author}</p>
+              <p>Genre : {book.genre}</p>
+              <p>PublicationDate : {book.publicationDate}</p>
+
+              <div className="card-actions justify-end">
+                <div
+                  className="badge badge-outline cursor-pointer"
+                  onClick={() => handleWishList(book)}
+                >
+                  WishList
+                </div>
+                <div className="badge badge-outline">
+                  <Link to={`/book-details/${book._id}`}> Details</Link>
                 </div>
               </div>
-            </Link>
+            </div>
           </div>
         ))}
       </div>

@@ -30,8 +30,8 @@ export default function UpdateBook() {
   const { title, author, genre, publicationDate } = data.data;
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const bookData = {
-      id,
-      ...data,
+      id: id,
+      data: data,
     };
     try {
       await updatedBook(bookData).unwrap();

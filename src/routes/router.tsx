@@ -5,10 +5,12 @@ import SignUp from "../pages/Signup";
 import Login from "../pages/Login";
 import BookDetails from "../pages/BookDetails";
 import Books from "../pages/Books";
+
 import Home from "../pages/Home";
 import MainLayout from "../layouts/MainLayout";
 import AddBook from "../pages/AddBook";
 import UpdateBook from "../pages/UpdateBook";
+import WishList from "../pages/wishList";
 
 const routes = createBrowserRouter([
   {
@@ -23,6 +25,14 @@ const routes = createBrowserRouter([
       {
         path: "/books",
         element: <Books />,
+      },
+      {
+        path: "/wishlist",
+        element: (
+          <PrivateRoute>
+            <WishList />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/addbook",

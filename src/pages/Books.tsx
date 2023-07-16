@@ -1,17 +1,26 @@
 import { useGetBooksQuery } from "../redux/features/book/bookApi";
+import { addToWishList } from "../redux/features/wishList/wishList.Slice";
+import { useAppDispatch } from "../redux/hook";
 import { IBook } from "../types/globalTypes";
 import { Link } from "react-router-dom";
 
 export default function Books() {
-
-  
-  const {data,isLoading} =useGetBooksQuery(undefined)
+  const dispatch = useAppDispatch();
+  const { data, isLoading } = useGetBooksQuery(undefined);
   if (isLoading) {
-    return <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin dark:border-violet-400"></div>;
+    return (
+      <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin dark:border-violet-400"></div>
+    );
   }
   const handleSearch = (e: { preventDefault: () => void }) => {
     e.preventDefault();
   };
+
+  const handleWishList = (data: IBook) => {
+    console.log(data);
+    dispatch(addToWishList(data));
+  };
+
   return (
     <>
       <header className="mx-auto">
@@ -50,7 +59,7 @@ export default function Books() {
       </header>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 px-2">
-        {data?.data?.map((book:IBook) => (
+        {data?.data?.map((book: IBook) => (
           <div key={book._id} className="card border shadow ">
             <figure>
               <img
@@ -59,19 +68,24 @@ export default function Books() {
                 alt="book"
               />
             </figure>
-            <Link to={`/book-details/${book._id}`}>
-              <div className="card-body">
-                <h2 className="card-title">Title : {book.title}</h2>
-                <p>Author : {book.author}</p>
-                <p>PublicationDate : {book.publicationDate}</p>
 
-                <div className="card-actions justify-end">
-                  <div className="badge badge-outline">
-                    {book.publicationDate}
-                  </div>
+            <div className="card-body">
+              <h2 className="card-title">Title : {book.title}</h2>
+              <p>Author : {book.author}</p>
+              <p>Date : {book.publicationDate}</p>
+
+              <div className="card-actions justify-end">
+                <div
+                  className="badge badge-outline cursor-pointer"
+                  onClick={() => handleWishList(book)}
+                >
+                  WishList
+                </div>
+                <div className="badge badge-outline">
+                  <Link to={`/book-details/${book._id}`}> Details</Link>
                 </div>
               </div>
-            </Link>
+            </div>
           </div>
         ))}
       </div>

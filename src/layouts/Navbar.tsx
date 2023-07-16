@@ -40,6 +40,9 @@ export default function Navbar() {
             ) : (
               <>
                 <li>
+                  <Link to="/wishlist">WishList</Link>
+                </li>
+                <li>
                   <Link to="/addbook">Add Book</Link>
                 </li>
                 <li>
