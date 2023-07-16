@@ -1,4 +1,5 @@
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useAppSelector } from "../redux/hook";
 
 type Inputs = {
   title: string;
@@ -9,13 +10,18 @@ type Inputs = {
 
 export default function AddBook() {
   
+  const email =useAppSelector((state)=>state.user.user.email)
+
   const {
     register,
     handleSubmit,
   } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log(data);
-    // dispatch(loginUser({ email: data.email, password: data.password }));
+    
+    const options ={
+      ...data , email, review : []
+    }
+    console.log(options)
   };
 
   return (

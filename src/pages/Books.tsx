@@ -3,13 +3,7 @@ import { IBook } from "../types/globalTypes";
 import { Link } from "react-router-dom";
 
 export default function Books() {
-  // const [bookState, setBookState] = useState<IBook[]>([]);
 
-  // useEffect(() => {
-  //   fetch("books.json")
-  //     .then((res) => res.json())
-  //     .then((data) => setBookState(data));
-  // }, []);
   
   const {data,isLoading} =useGetBooksQuery(undefined)
   if (isLoading) {
@@ -57,7 +51,7 @@ export default function Books() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 px-2">
         {data?.data?.map((book:IBook) => (
-          <div className="card border shadow ">
+          <div key={book._id} className="card border shadow ">
             <figure>
               <img
                 className="h-[150px] w-full"

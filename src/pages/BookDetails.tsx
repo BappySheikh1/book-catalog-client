@@ -1,16 +1,16 @@
 import { Link, useParams } from "react-router-dom";
 import BookReview from "../components/BookReview";
 import { useGetSingleBooksQuery } from "../redux/features/book/bookApi";
+import { useAppSelector } from "../redux/hook";
 
 export default function BookDetails() {
   const { id } = useParams();
-
+  const { user } = useAppSelector((state) => state.user);
   const { data } = useGetSingleBooksQuery(id);
 
-
-  const handleDelete =(_id:string | undefined)=>{
-    console.log("Delete This Book", _id)
-  }
+  const handleDelete = (_id: string | undefined) => {
+    console.log("Delete This Book", _id);
+  };
 
   return (
     <>
@@ -33,13 +33,34 @@ export default function BookDetails() {
               <li key={reviews}>{reviews}</li>
             ))}
           </ul>
-          <div className="">
-          <Link to={`/update-book/${id}`}>
-            <button className="btn btn-primary">Edit Book</button>
-          </Link>
+          {user?.email === data?.data?.email ? (
+            <>
+              <Link to={`/update-book/${id}`}>
+                <button className="btn btn-primary">Edit Book</button>
+              </Link>
 
-            <button className="btn bg-red-800 text-white ml-10" onClick={()=>handleDelete(id)}>Delete Book</button>
-          </div>
+              <button
+                className="btn bg-red-800 hover:bg-red-700 text-white ml-10"
+                onClick={() => handleDelete(id)}
+              >
+                Delete Book
+              </button>
+            </>
+          ) : (
+            <>
+              <button disabled className="btn btn-primary">
+                Edit Book
+              </button>
+
+              <button
+                disabled
+                className="btn bg-red-800 hover:bg-red-700 text-white ml-10"
+                onClick={() => handleDelete(id)}
+              >
+                Delete Book
+              </button>
+            </>
+          )}
         </div>
       </div>
       <BookReview id={id!} />

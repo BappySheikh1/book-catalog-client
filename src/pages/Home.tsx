@@ -4,9 +4,7 @@ import Header from "./Header";
 import { useGetLimitBooksQuery } from "../redux/features/book/bookApi";
 
 export default function Home() {
-  // const [bookState, setBookState] = useState<IBook[]>([]);
-
-  // const { data } = useAppSelector((state) => state.book);
+  
   const { data, isLoading } = useGetLimitBooksQuery(undefined);
 
   if (isLoading) {
