@@ -1,23 +1,25 @@
-import { useEffect, useState } from "react";
 import { IBook } from "../types/globalTypes";
 import { Link } from "react-router-dom";
 import Header from "./Header";
+import { useGetLimitBooksQuery } from "../redux/features/book/bookApi";
 
 export default function Home() {
-  const [bookState, setBookState] = useState<IBook[]>([]);
+  // const [bookState, setBookState] = useState<IBook[]>([]);
 
-  useEffect(() => {
-    fetch("books.json")
-      .then((res) => res.json())
-      .then((data) => setBookState(data));
-  }, []);
+  // const { data } = useAppSelector((state) => state.book);
+  const { data, isLoading } = useGetLimitBooksQuery(undefined);
+
+  if (isLoading) {
+    <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin dark:border-violet-400"></div>;
+  }
 
   return (
     <>
-    <Header />
+      <Header />
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 px-2">
-        {bookState?.map((book) => (
-          <div className="card border shadow ">
+        {data?.data?.map((book: IBook) => (
+          <div className="card border shadow my-5">
             <figure>
               <img
                 className="h-[150px] w-full"
@@ -26,18 +28,18 @@ export default function Home() {
               />
             </figure>
             <Link to={`/book-details/${book._id}`}>
-            <div className="card-body">
-              <h2 className="card-title">Title : {book.title}</h2>
-              <p>Author : {book.author}</p>
-              <p>Genre : {book.genre}</p>
-              <p>PublicationDate : {book.publicationDate}</p>
+              <div className="card-body">
+                <h2 className="card-title">Title : {book.title}</h2>
+                <p>Author : {book.author}</p>
+                <p>Genre : {book.genre}</p>
+                <p>PublicationDate : {book.publicationDate}</p>
 
-              <div className="card-actions justify-end">
-                <div className="badge badge-outline">
-                  {book.publicationDate}
+                <div className="card-actions justify-end">
+                  <div className="badge badge-outline">
+                    {book.publicationDate}
+                  </div>
                 </div>
               </div>
-            </div>
             </Link>
           </div>
         ))}

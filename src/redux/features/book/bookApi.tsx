@@ -2,8 +2,11 @@ import api from "../../api/apiSlice";
 
 const bookApi = api.injectEndpoints({
   endpoints: (builder) => ({
+    getLimitBooks: builder.query({
+      query: () => `/book?limit=${10}`,
+    }),
     getBooks: builder.query({
-      query: () => "/books",
+      query: () => `/book`,
     }),
     getSingleBooks: builder.query({
       query: (id) => `/book/${id}`,
@@ -11,4 +14,4 @@ const bookApi = api.injectEndpoints({
   }),
 });
 
-export const {useGetBooksQuery,useGetSingleBooksQuery} = bookApi;
+export const {useGetBooksQuery,useGetLimitBooksQuery,useGetSingleBooksQuery} = bookApi;
