@@ -1,15 +1,23 @@
 import { Link, useParams } from "react-router-dom";
 import BookReview from "../components/BookReview";
-import { useGetSingleBooksQuery } from "../redux/features/book/bookApi";
+import {
+  useDeleteBooksMutation,
+  useGetSingleBooksQuery,
+} from "../redux/features/book/bookApi";
 import { useAppSelector } from "../redux/hook";
 
 export default function BookDetails() {
   const { id } = useParams();
   const { user } = useAppSelector((state) => state.user);
   const { data } = useGetSingleBooksQuery(id);
+  const [deleteBook] = useDeleteBooksMutation();
 
   const handleDelete = (_id: string | undefined) => {
     console.log("Delete This Book", _id);
+    if(_id){
+      alert("tumi ki sotti delete korte chau")
+    }
+    deleteBook({ _id });
   };
 
   return (
@@ -17,7 +25,7 @@ export default function BookDetails() {
       <div className="flex max-w-7xl mx-auto items-center border-b border-gray-300">
         <div className="w-[50%] ">
           <img
-          className="rounded-3xl"
+            className="rounded-3xl"
             src="https://img.freepik.com/free-psd/soft-cover-book-mockup-scene_358694-4823.jpg?w=740&t=st=1689441169~exp=1689441769~hmac=51dfcfacda0a0e2a86d7b2ad2091c3a3c301188c627116481ec15a9118c71dec"
             alt=""
           />
