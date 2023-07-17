@@ -1,11 +1,19 @@
+import { SubmitHandler, useForm } from "react-hook-form";
 import { useGetBooksQuery } from "../redux/features/book/bookApi";
 import { addToWishList } from "../redux/features/wishList/wishList.Slice";
 import { useAppDispatch } from "../redux/hook";
 import { IBook } from "../types/globalTypes";
 import { Link } from "react-router-dom";
 
+type Inputs = {
+  title: string;
+  genre: string;
+  publicationDate: string;
+};
+
 export default function Books() {
   const dispatch = useAppDispatch();
+  const { register, handleSubmit } = useForm<Inputs>();
   const { data, isLoading } = useGetBooksQuery(undefined,{
     refetchOnMountOrArgChange: true,
     pollingInterval: 30000,
@@ -15,48 +23,51 @@ export default function Books() {
       <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin dark:border-violet-400"></div>
     );
   }
-  const handleSearch = (e: { preventDefault: () => void }) => {
-    e.preventDefault();
-  };
+ 
 
   const handleWishList = (data: IBook) => {
     console.log(data);
     dispatch(addToWishList(data));
   };
 
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    console.log(data)
+
+  }
+
+
   return (
     <>
-      <header className="mx-auto">
-        <div className="navbar ">
-          <form onClick={handleSearch} className="flex-none gap-2">
-            <div className="form-control">
-              <input
-                type="genre"
-                placeholder="Filtering Genre"
-                className="input input-bordered w-24 md:w-auto"
-              />
-            </div>
-            <div className="form-control">
-              <input
-                type="year"
-                placeholder="Filtering publication Year"
-                className="input input-bordered w-24 md:w-auto"
-              />
-            </div>
-            <div className="form-control">
-              <input
-                type="search"
-                placeholder="Search books"
-                className="input input-bordered w-24 md:w-auto"
-              />
-            </div>
-            <div className="form-control">
-              <input
-                type="button"
-                value="Search"
-                className="input input-bordered w-24 md:w-auto"
-              />
-            </div>
+      <header className="">
+        <div className="navbar mx-auto">
+        <form onSubmit={handleSubmit(onSubmit)}>
+            <input
+              className="border  border-[#464660] w-[150px] h-[49px] rounded-[10px] p-[20px] gap-[10px]  font-bold"
+              type="title"
+              placeholder="Search title"
+              {...register("title")}
+            />
+            <input
+              className="border mx-2 border-[#464660] w-[150px] h-[49px] rounded-[10px] p-[20px] gap-[10px]  font-bold"
+              type="genre"
+              placeholder="Search genre"
+              {...register("genre")}
+            />
+            <input
+              className="border  border-[#464660] w-[150px] h-[49px] rounded-[10px] p-[20px] gap-[10px]  font-bold"
+              type="publicationDate"
+              placeholder="Search publicationDate"
+              {...register("publicationDate")}
+            />
+           
+            
+            
+
+            <input
+              className="btn  ms-3 w-[100px] h-[53px] rounded-full gap-[10px] font-bold cursor-pointer "
+              type="submit"
+              value="Submit"
+            />
           </form>
         </div>
       </header>
