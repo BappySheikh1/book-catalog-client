@@ -20,14 +20,17 @@ const wishSlice = createSlice({
         (wish) => wish._id === action.payload._id
       );
       if (existing) {
-        console.log("Test")
+        console.log("Test");
       } else {
         state.wishList.push({ ...action.payload });
       }
     },
+    removeFromWishList: (state, action: PayloadAction<IBook>) => {
+     state.wishList = state.wishList.filter((wish) => wish._id !== action.payload._id);
+    },
   },
 });
 
-export const { addToWishList } = wishSlice.actions;
+export const { addToWishList,removeFromWishList } = wishSlice.actions;
 
 export default wishSlice.reducer;
