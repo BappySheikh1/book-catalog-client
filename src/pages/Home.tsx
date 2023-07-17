@@ -7,7 +7,10 @@ import { useAppDispatch } from "../redux/hook";
 
 export default function Home() {
   const dispatch = useAppDispatch();
-  const { data, isLoading } = useGetLimitBooksQuery(undefined);
+  const { data, isLoading } = useGetLimitBooksQuery(undefined, {
+    refetchOnMountOrArgChange: true,
+    pollingInterval: 30000,
+  });
 
   if (isLoading) {
     return (
@@ -38,7 +41,7 @@ export default function Home() {
             </figure>
 
             <div className="p-2">
-            <h2 className="card-title">Title : {book.title}</h2>
+              <h2 className="card-title">Title : {book.title}</h2>
               <small>
                 <p>Author : {book.author}</p>
               </small>
