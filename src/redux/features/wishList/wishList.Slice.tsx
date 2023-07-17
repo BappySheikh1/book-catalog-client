@@ -3,12 +3,12 @@ import { IBook } from "../../../types/globalTypes";
 
 interface IWish {
   wishList: IBook[];
-  total: number;
+  readBooks: IBook[];
 }
 
 const initialState: IWish = {
   wishList: [],
-  total: 0,
+  readBooks: [],
 };
 
 const wishSlice = createSlice({
@@ -25,12 +25,20 @@ const wishSlice = createSlice({
         state.wishList.push({ ...action.payload });
       }
     },
-    removeFromWishList: (state, action: PayloadAction<IBook>) => {
-     state.wishList = state.wishList.filter((wish) => wish._id !== action.payload._id);
+    addToReadBook: (state, action: PayloadAction<IBook>) => {
+      state.wishList = state.wishList.filter(
+        (wish) => wish._id !== action.payload._id
+      );
+     
+        state.readBooks.push(action.payload);
+      
+    },
+    removeFromReadBook: (state, action: PayloadAction<IBook>) => {
+     state.readBooks = state.readBooks.filter((wish) => wish._id !== action.payload._id);
     },
   },
 });
 
-export const { addToWishList,removeFromWishList } = wishSlice.actions;
+export const { addToWishList,removeFromReadBook,addToReadBook } = wishSlice.actions;
 
 export default wishSlice.reducer;

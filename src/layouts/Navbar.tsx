@@ -8,6 +8,8 @@ export default function Navbar() {
   const { user } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch()
 
+  const {wishList,readBooks} =useAppSelector(state=>state.wish)
+
   const handleLogOut =()=>{
     signOut(auth).then(()=>{
       dispatch(setUser(null))
@@ -19,7 +21,7 @@ export default function Navbar() {
       <div className="navbar bg-base-100">
         <div className="flex-1">
           <Link to="/" className="btn btn-ghost normal-case text-xl">
-            Catalog book
+            <img src="https://i.ibb.co/HNv73Fb/IZVNvp-F-removebg-preview.png" className="w-[100px] h-[60px]" alt="" />
           </Link>
         </div>
         <div className="flex-none">
@@ -39,8 +41,17 @@ export default function Navbar() {
               </>
             ) : (
               <>
-                <li>
-                  <Link to="/wishlist">WishList</Link>
+                <li className="relative">
+                  <Link to="/wishlist">
+                      WishList
+                     <span className="absolute top-0 right-2">{wishList.length}</span>
+                    </Link>
+                </li>
+                <li className="relative">
+                  <Link to="/readbook">
+                      ReedBook
+                     <span className="absolute top-0 right-2">{readBooks.length}</span>
+                    </Link>
                 </li>
                 <li>
                   <Link to="/addbook">Add Book</Link>
